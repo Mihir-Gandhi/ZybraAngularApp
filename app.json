@@ -6,7 +6,7 @@
   "keywords": ["angular", "mvc"],
   "buildpacks": [
     {
-      "url": "https://github.com/heroku/heroku-buildpack-pgbouncer"
+      "url": "https://codon-buildpacks.s3.amazonaws.com/buildpacks/heroku/ruby.tgz"
     },
     {
       "url": "heroku/ruby"
