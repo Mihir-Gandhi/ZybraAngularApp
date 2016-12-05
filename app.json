@@ -3,5 +3,13 @@
   "description": "A Angular app",
   "repository": "https://github.com/Mihir-Gandhi/ZybraAngularApp",
   "logo": "https://node-js-sample.herokuapp.com/node.png",
-  "keywords": ["angular", "mvc"]
+  "keywords": ["angular", "mvc"],
+  "buildpacks": [
+    {
+      "url": "https://github.com/heroku/heroku-buildpack-pgbouncer"
+    },
+    {
+      "url": "heroku/ruby"
+    }
+  ]
 }
