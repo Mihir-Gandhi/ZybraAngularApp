@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+    <style>
+        .branchHeaders{
+            font-weight:bold;
+        }
+    </style>
+
+    <link rel="stylesheet" href="lib/bootstrap.css" />
+    <script src="lib/angular.min.js"></script>
+    <script src="lib/angular-resource.min.js"></script>
+    <script src="lib/ui-bootstrap.min.js"></script>
+    <script src="app.js"></script>
+    <script src="controllers/bank.controller.js"></script>
+    <script src="services/bank.services.js"></script>
+</head>
+
+<body ng-app="ZybraBankApp" ng-controller="BankController as bank">
+
+    <h2 style="text-align:center">ZYBRA BANK APP</h2>
+
+    <div class="col-md-6" style="top:100px;">
+        <select ng-model="bank.selectedBankName" ng-change="bank.getCityNames(bank.selectedBankName)" ng-options="bankName for bankName in bank.bankData">
+            <option value="" selected disabled>------Select a Bank------</option>
+        </select>
+        <div style="margin:30px 0px 30px 0px;">
+            <input name="cityNames" placeholder="Type City" list="city" ng-model="bank.selectedCityName" style="width:69%" ng-disabled="bank.selectedBankName != '' ? false : true">
+            <datalist id="city" >
+                <select>
+                    <option ng-repeat="city in bank.cityData">{{city.cityName}}</option>
+                </select>
+            </datalist>
+        </div>
+        <button type="submit" ng-click="bank.getBranchNames(bank.selectedBankName,bank.selectedCityName)" style="background-color:darkorange;color:black;font-weight:bold;margin-bottom:20px;">Get Data</button>
+    </div>
+
+    <div class="col-md-6" style="top:100px;">
+        <p style="font-weight:bold;font-size:medium">BRANCH DETAILS</p>
+        <div ng-repeat="branches in bank.branchData" ng-show="bank.branchData.length != 0 ? true : false" style="border:1px solid;width:50%;word-wrap:break-word;margin-bottom:10px;">
+            <p><span class="branchHeaders">IFSC:</span> {{branches.ifsc}}</p>
+            <p><span class="branchHeaders">Bank:</span> {{branches.bank_name}}</p>
+            <p><span class="branchHeaders">Branch:</span> {{branches.branch}}</p>
+            <p><span class="branchHeaders">City:</span> {{branches.city}}</p>
+        </div>
+        <div ng-show="bank.branchData.length == 0">
+            No Data Found.
+        </div>
+    </div>
+
+</body>
+</html>
